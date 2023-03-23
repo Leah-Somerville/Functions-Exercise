@@ -57,7 +57,14 @@ const newMuppetMovies = [
     `Muppets Most Wanted`
 ];
 
-const upperMovies = newMuppetMovies.map(m => m.toUpperCase());
+// 10b
+// anonymous arrow function
+// const upperMovies = newMuppetMovies.map(m => m.toUpperCase());
+
+// anonymous declaration function
+const upperMovies = newMuppetMovies.map(function(m){
+    return m.toUpperCase();
+});
 
 // BONUS
 // 11a
@@ -71,7 +78,6 @@ const oldMuppetMovies = [
 ];
 
 // 11b
-console.log(`==================`);
 const twoMovies = oldMuppetMovies.filter(m => m.length === 22);
 console.log(twoMovies);
 
@@ -90,14 +96,10 @@ const charactersTwo = [
 
 // 12c
 randomMuppet = characters => {
-    let charLen = characters.length;
-
-    let selectedChar = Math.floor(Math.random() * charLen);
-
+    let selectedChar = Math.floor(Math.random() * characters.length);
     return characters[selectedChar];
-    // return selectedChar;
-
 }
+
 // 12d
 const test1 = randomMuppet(charactersOne);
 console.log(test1);
@@ -106,17 +108,23 @@ const test2 = randomMuppet(charactersTwo);
 console.log(test2);
 
 // 13
-caps = word => {
-    let newWord = '';
-    for (i = 0; i < word.length; i++){
-        if (i % 2 == 0){
-            newWord += word[i].toUpperCase();
-        }else{
-            newWord += word[i];
+caps = string => {
+    let cap = 0;
+    let final = ``;
+    string = string.toLowerCase();
+    for (i = 0; i < string.length; i++){
+      if (string.slice(i, i + 1) !== " "){
+        if (cap % 2 === 0){
+          final += string.slice(i, i + 1).toUpperCase();
+        } else {
+          final += string.slice(i, i + 1)
         }
+        cap++;
+      } else {
+        final += " "
+      }
     }
-    return newWord;
-}
+    console.log(final);
+  }
 
-const y = caps(`hello world`);
-console.log(y);
+caps(`hello world`);
